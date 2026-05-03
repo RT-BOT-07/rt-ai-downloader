@@ -28,6 +28,12 @@ BASE_OPTS = {
     "geo_bypass"         : True,
     "age_limit"          : 99,
     "ffmpeg_location"    : shutil.which("ffmpeg") or "/data/data/com.termux/files/usr/bin/ffmpeg",
+    "extractor_args"     : {
+        "youtube": {
+            "skip"        : ["dash", "hls"],
+            "player_skip" : ["webpage", "configs"],
+        }
+    },
     "http_headers"       : {
         "User-Agent": (
             "Mozilla/5.0 (Linux; Android 12; Pixel 6) "
@@ -294,5 +300,6 @@ if __name__ == "__main__":
     print("  ║   http://127.0.0.1:5000      ║")
     print("  ╚══════════════════════════════╝\n")
     import os
-port = int(os.environ.get("PORT", 5000))
-app.run(host="0.0.0.0", port=port, debug=False, threaded=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False, threaded=True)
+    
